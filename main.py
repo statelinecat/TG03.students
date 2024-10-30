@@ -33,7 +33,7 @@ class Form(StatesGroup):
     grade = State()
 
 def init_db():
-    conn = sqlite3.connect('bot.db')
+    conn = sqlite3.connect('school_data.db')
     cur = conn.cursor()
 
     cur.execute("""
@@ -82,7 +82,7 @@ async def cmd_grade(message: Message, state: FSMContext):
                          f"Город: {data['city']}\n"
                          f"Возраст: {data['age']}\n"
                          f"Группа: {data['grade']}")
-    conn = sqlite3.connect('bot.db')
+    conn = sqlite3.connect('school_data.db')
     cur = conn.cursor()
     cur.execute("""
     INSERT INTO users(name, city, age, grade) VALUES(?, ?, ?, ?)
